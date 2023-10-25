@@ -219,3 +219,18 @@ for i in range(initialDatasetSize, count):
 # trainDf = getTrainDf(0,initialDatasetSize)
 # testDf = getTrainDf(initialDatasetSize,count)
 # trainAndTest(0,trainDf, testDf, trainItem)
+
+def addParity(parityMap, index, parity):
+    formerParity = "0x00000000"
+    if index in parityMap:
+        formerParity = parityMap[index]
+    
+
+    parity = int(parity[2:], 16)
+    formerParity = int(formerParity[2:], 16)
+    formerParity = formerParity | parity
+                
+
+    parityMap[index] = "0x" + hex(parity)[2:].zfill(8)
+    # print(type(parityMap[index] ))
+    return parityMap
